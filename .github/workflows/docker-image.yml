@@ -1,0 +1,22 @@
+name: Podcast Feed Generator
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  generate-podcast-feed:
+    runs-on: ubuntu-latest
+    
+      steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      # Set up Docker to run the action
+      - name: Build Docker image from Dockerfile
+        run: |
+          docker build -t podcast-generator .
+          docker run -e EMAIL=${{ github.actor }}@localhost -e NAME=${{ github.actor }} podcast-generator
