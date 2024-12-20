@@ -1,6 +1,9 @@
 import yaml
 import xml.etree.ElementTree as xml_tree
 
+# Process YAML files containing podcast metadata and episode details, 
+# converts the data into an XML format compatible with RSS 2.0, and writes the resulting XML data to a file named podcast.xml.
+
 with open('feed.yaml', 'r') as file:
     yaml_data = yaml.safe_load(file)
 

@@ -10,7 +10,7 @@ jobs:
   generate-podcast-feed:
     runs-on: ubuntu-latest
     
-      steps:
+    steps:
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
