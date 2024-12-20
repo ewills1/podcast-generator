@@ -26,6 +26,7 @@ COPY feed.py /usr/bin/feed.py
 
 # Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh 
+RUN chmod +x /entrypoint.sh
 
 
 # Set the entrypoint
