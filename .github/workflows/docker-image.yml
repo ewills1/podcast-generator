@@ -15,8 +15,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      # Set up Docker to run the action
+      # Build Docker image from Dockerfile inside backend/ directory
       - name: Build Docker image from Dockerfile
         run: |
-          docker build -t podcast-generator/backend .
-          docker run -e EMAIL=${{ github.actor }}@localhost -e NAME=${{ github.actor }} podcast-generator
+          docker build -t podcast-generator/backend -f backend/Dockerfile .
+
+      # Run the Docker container and generate podcast feed
+      - name: Run podcast feed generator container
+        run: |
+          docker run \
+            -e EMAIL=${{ github.actor }}@localhost \
+            -e NAME=${{ github.actor }} \
+            podcast-generator/backend
