@@ -25,7 +25,7 @@ ENV PATH="/venv/bin:$PATH"
 COPY feed.py /usr/bin/feed.py 
 
 # Copy entrypoint script
-COPY entrypoint.sh /entrypoint.sh 
+COPY backend/entrypoint.sh /entrypoint.sh 
 RUN chmod +x /entrypoint.sh
 
 
