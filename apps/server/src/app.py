@@ -1,6 +1,6 @@
 from flask import Flask, send_file, render_template
 import os
-from feed import generate_podcast_feed  # Importing the function
+from apps.server.src.services.feed import generate_podcast_feed  # Importing the function
 
 app = Flask(__name__)
 
