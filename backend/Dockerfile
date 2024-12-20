@@ -22,7 +22,7 @@ RUN python3 -m venv /venv \
 ENV PATH="/venv/bin:$PATH"
 
 # Copy application code
-COPY feed.py /usr/bin/feed.py 
+COPY feed.py backend/feed.py 
 
 # Copy entrypoint script
 COPY backend/entrypoint.sh /entrypoint.sh 
