@@ -18,5 +18,5 @@ jobs:
       # Set up Docker to run the action
       - name: Build Docker image from Dockerfile
         run: |
-          docker build -t podcast-generator .
+          docker build -t podcast-generator/backend .
           docker run -e EMAIL=${{ github.actor }}@localhost -e NAME=${{ github.actor }} podcast-generator
