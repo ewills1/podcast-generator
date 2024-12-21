@@ -2,8 +2,9 @@ name: Generate Podcast Feed
 
 on:
   push:
-    paths:
-      - 'podcast_data/*.yml'  # Trigger action when new YAML files in 'podcast_data' are pushed
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   generate_feed:
