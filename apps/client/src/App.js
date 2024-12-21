@@ -7,11 +7,13 @@ import Header from './components/ResponsiveAppBar';
 function App() {
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/podcasts" element={<PodcastPage />} />
-      </Routes>
+      <div className='App'>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/podcasts" element={<PodcastPage />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
