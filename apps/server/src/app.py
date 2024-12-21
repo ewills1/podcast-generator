@@ -1,23 +1,28 @@
-from flask import Flask, send_file, render_template
-import os
-from apps.server.src.services.feed import generate_podcast_feed  # Importing the function
+from flask import Flask, jsonify
+import xml.etree.ElementTree as ET
 
 app = Flask(__name__)
+from flask_cors import CORS
+
+CORS(app)
 
 # Route to serve the podcast XML feed
-@app.route('/podcast.xml')
-def serve_podcast_xml():
-    # Generate the podcast XML feed (if it's not generated yet)
-    if not os.path.exists('podcast.xml'):
-        generate_podcast_feed('podcast.yaml', output_file='podcast.xml')
-    
-    # Serve the generated XML file as a response
-    return send_file('podcast.xml', mimetype='application/xml')
+@app.route('/api/podcasts', methods=['GET'])
+def get_podcasts():
+    tree = ET.parse('../../podcast-feed/podcast.xml')
+    root = tree.getroot()
 
-# Route to serve the frontend HTML page
-@app.route('/')
-def home():
-    return render_template('index.html')
+    podcasts = []
+    for item in root.findall('./channel/item'):
+        podcast = {
+            'title': item.find('title').text,
+            'description': item.find('description').text,
+            'audioUrl': item.find('enclosure').attrib.get('url'),
+            'published': item.find('pubDate').text
+        }
+        podcasts.append(podcast)
+
+    return jsonify(podcasts)
 
 if __name__ == '__main__':
     app.run(debug=True)

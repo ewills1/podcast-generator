@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPodcasts } from '../services/api';
-import PodcastCard from '../components/PodcastCard';
+import { Container } from '@mui/material';
+import PodcastPaper from '../components/PodcastPaper';
 
-const PodcastPage = () => {
+function PodcastPage() {
   const [podcasts, setPodcasts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchPodcasts().then(setPodcasts).catch(console.error);
+    // Fetch podcast data from Flask API
+    fetch('http://127.0.0.1:5000/api/podcasts')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch podcasts');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPodcasts(data); // Update state with podcast data
+      })
+      .catch((err) => {
+        setError(err.message); // Set error state if fetch fails
+      });
   }, []);
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (podcasts.length === 0) {
+    return <div>Loading podcasts...</div>;
+  }
+
   return (
-    <div>
-      <h1>Podcasts</h1>
-      <div>
-        {podcasts.map((podcast, index) => (
-          <PodcastCard key={index} podcast={podcast} />
-        ))}
-      </div>
-    </div>
+    <Container sx={{ marginTop: '2rem' }}>
+      {podcasts.map((podcast, index) => (
+        <PodcastPaper key={index} podcast={podcast} />
+      ))}
+    </Container>
   );
-};
+}
 
 export default PodcastPage;
