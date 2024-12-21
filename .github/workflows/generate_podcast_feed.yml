@@ -24,7 +24,7 @@ jobs:
       # Step 3: Install dependencies (make sure your requirements.txt includes the necessary packages)
       - name: Install dependencies
         run: |
-          pip install -r apps/services/src/requirements.txt  # Install the dependencies
+          pip install -r apps/services/requirements.txt  # Install the dependencies
 
       # Step 4: Run the script to generate the podcast feed
       - name: Run podcast feed generation
