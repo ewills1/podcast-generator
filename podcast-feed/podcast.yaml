@@ -27,7 +27,7 @@ item:
     file: "/episodes/episode3.mp3"
     length: "2345638"
   - title: "Episode 4"
-    description: "This is now the fourth episode of this podcast."
+    description: "This is now the only fourth episode of this podcast."
     duration: "33:00"
     published: "2024-12-27T00:00:00Z"
     file: "/episodes/episode4.mp3"
