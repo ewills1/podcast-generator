@@ -10,7 +10,7 @@ git config --global user.name "${GITHUB_ACTOR}"
 
 git config --global user.email "${INPUT_EMAIL}"
 
-git remote set-url origin https://"${GH_TOKEN}"@github.com/"${INPUT_EMAIL}"/podcast-generator.git
+git remote set-url origin https://"${GH_TOKEN}"@github.com/"${GITHUB_USERNAME}"/podcast-generator.git
 
 git config --global --add safe.directory /app
 
