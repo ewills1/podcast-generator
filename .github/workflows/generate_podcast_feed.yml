@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'podcast-feed/podcast.yaml' 
+      - 'podcast-feed/podcast.xml' 
   pull_request:
     branches: [ "main" ]
     paths:
