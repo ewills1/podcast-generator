@@ -8,7 +8,7 @@ cd /app/server/src/services
 # Set up git config
 git config --global user.name "${GITHUB_ACTOR}"
 
-git config --global user.email "${INPUT_EMAIL}"
+git config --global user.email "${GITHUB_EMAIL}"
 
 git remote set-url origin https://"${GH_TOKEN}"@github.com/ewills1/podcast-generator.git
 
