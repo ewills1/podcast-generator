@@ -6,9 +6,9 @@ echo "========== Starting Feed Update =========="
 cd /app/server/src/services
 
 # Set up git config
-git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.name "ewills1"
 
-git config --global user.email "${GITHUB_EMAIL}"
+git config --global user.email "ewills1@sheffield.ac.uk"
 
 git remote set-url origin https://"${GH_TOKEN}"@github.com/ewills1/podcast-generator.git
 
