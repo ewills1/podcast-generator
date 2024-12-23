@@ -4,21 +4,21 @@ FROM python:3.10-slim
 # Install System Dependencies
 RUN apt-get update && apt-get install -y git && apt-get clean
 
-# Copy requirements file
-COPY requirements.txt /tmp/requirements.txt
+# Copy the server directory 
+COPY apps/server /app/server
+
+# Copy the requirements file into the container
+COPY requirements.txt /app/requirements.txt
+
+COPY podcast-feed /app/podcast-feed
 
 # Install Python dependencies
 RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r /tmp/requirements.txt \
-    && rm -rf /tmp/requirements.txt
+    && pip install --no-cache-dir -r /app/requirements.txt \
+    && rm -rf /app/requirements.txt
 
-# Copy application code
-COPY src/services/feed.py /app/feed.py
-
-# Copy entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-
-# Ensure the entrypoint script is executable
+# Copy the entrypoint script
+COPY apps/server/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Set the working directory

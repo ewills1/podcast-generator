@@ -51,6 +51,6 @@ def generate_podcast_feed(yaml_file, output_file='../../podcast-feed/podcast.xml
         output_tree.write(output_file, encoding='UTF-8', xml_declaration=True)
     print(f"Podcast feed successfully generated at {output_file}.")
 
-yaml_file = "../../pocast-feed/podcast.yaml"
+yaml_file = '/app/podcast-feed/podcast.yaml'
 
 generate_podcast_feed(yaml_file)

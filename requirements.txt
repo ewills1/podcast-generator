@@ -1,0 +1,4 @@
+Flask==2.2.3
+werkzeug==2.2.3
+PyYAML==6.0
+flask_cors==3.0.1
