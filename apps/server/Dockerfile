@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y git && apt-get clean
 # Copy the server directory 
 COPY apps/server /app/server
 
+COPY .git /app/.git
+
 # Copy the requirements file into the container
 COPY requirements.txt /app/requirements.txt
 

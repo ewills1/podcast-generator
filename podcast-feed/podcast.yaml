@@ -20,7 +20,7 @@ item:
     published: "2024-12-27T00:00:00Z"
     file: "/episodes/episode2.mp3"
     length: "2345678"
-    - title: "Episode 3"
+  - title: "Episode 3"
     description: "This is the third episode."
     duration: "35:00"
     published: "2024-12-27T00:00:00Z"
