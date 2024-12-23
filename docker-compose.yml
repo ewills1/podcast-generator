@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile.backend  # Specify the backend Dockerfile
+    ports:
+      - "5000:5000"  # Expose the backend on port 5000
+    volumes:
+      - ./apps/server:/app/server  # Map the server code
+      - ./podcast-feed:/app/podcast-feed  # Map the podcast-feed directory
+    environment:
+      FLASK_ENV: development  # Set Flask to development mode
+
+  frontend:
+    build:
+      context: ./apps/client
+      dockerfile: Dockerfile.frontend  # Specify the frontend Dockerfile
+    ports:
+      - "3000:3000"  # Expose the frontend on port 3000
+    volumes:
+      - ./client:/app  # Mount the frontend source code
+    environment:
+      REACT_APP_API_URL: "http://localhost:5000"  # Point frontend to backend API

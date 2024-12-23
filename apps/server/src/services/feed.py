@@ -3,7 +3,7 @@ import xml.etree.ElementTree as xml_tree
 import os
 from flask_cors import CORS
 
-def generate_podcast_feed(yaml_file, output_file='../../../podcast-feed/podcast.xml'):
+def generate_podcast_feed(yaml_file, output_file):
     """Generates a podcast RSS XML feed from a YAML file."""
 
     with open(yaml_file, 'r') as file:
@@ -52,5 +52,5 @@ def generate_podcast_feed(yaml_file, output_file='../../../podcast-feed/podcast.
     print(f"Podcast feed successfully generated at {output_file}.")
 
 yaml_file = '/app/podcast-feed/podcast.yaml'
-
-generate_podcast_feed(yaml_file)
+output_file = '/app/podcast-feed/podcast.xml'
+generate_podcast_feed(yaml_file, output_file)
