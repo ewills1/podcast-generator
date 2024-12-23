@@ -10,7 +10,7 @@ git config --global user.name "ewills1"
 
 git config --global user.email "ewills1@sheffield.ac.uk"
 
-git remote set-url origin https://"${GH_TOKEN}"@github.com/ewills1/podcast-generator.git
+git remote set-url origin https://"${{secrets.GH_TOKEN}}"@github.com/ewills1/podcast-generator.git
 
 git config --global --add safe.directory /app
 
