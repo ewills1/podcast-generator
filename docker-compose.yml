@@ -8,8 +8,10 @@ services:
     volumes:
       - ./apps/server:/app/server  # Map the server code
       - ./podcast-feed:/app/podcast-feed  # Map the podcast-feed directory
+    networks:
+      - my_network
     environment:
-      FLASK_ENV: development  # Set Flask to development mode
+      FLASK_DEBUG: "1"  # Set Flask to development mode
 
   frontend:
     build:
@@ -18,6 +20,13 @@ services:
     ports:
       - "3000:3000"  # Expose the frontend on port 3000
     volumes:
-      - ./client:/app  # Mount the frontend source code
+      - ./apps/client:/app  # Mount the frontend source code
+      - ./podcast-feed:/app/podcast-feed
+    networks:
+      - my_network
     environment:
-      REACT_APP_API_URL: "http://localhost:5000"  # Point frontend to backend API
+      REACT_APP_API_URL: "http://backend:5000"  # Point frontend to backend API
+
+networks:
+  my_network:
+    driver: bridge
