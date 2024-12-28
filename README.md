@@ -1,141 +1,136 @@
-# Podcast Generator
+# Full Stack Podcast App
 
-The **Podcast Generator** is a robust Python-based tool designed to streamline the creation and distribution of podcasts. Leveraging **Docker**, **GitHub Actions**, and **YAML configuration**, this project automates workflows for generating, packaging, and deploying podcast episodes efficiently.
+A comprehensive full-stack application designed for managing and displaying podcasts. This project includes a Flask API and Python backend for processing and storing podcast data from XML and JSON files, paired with a React frontend for a seamless user experience. Docker Compose simplifies development and deployment by tying the components together.
 
----
+## Key Features
 
-## Features
+- **Backend**: Flask API with Python logic for handling podcast data storage and updates.
+- **Frontend**: React application with an intuitive interface for browsing podcasts.
+- **Data Handling**: Import podcast data from XML and JSON files.
+- **Dockerized Deployment**: Use Docker Compose for effortless deployment of the frontend and backend.
 
-- **Automated Podcast Generation**: Converts audio files and metadata into a ready-to-publish podcast format.
-- **CI/CD with GitHub Actions**: Automatically tests, builds, and deploys updates.
-- **Containerization with Docker**: Simplified deployment and consistent environment using a Dockerfile.
-- **Configurable YAML Workflow**: Flexible automation powered by YAML configuration files.
-- **Integration with GitHub**: Leverages GitHub repositories and actions for streamlined collaboration and deployment.
+## Table of Contents
 
----
+- [Project Structure](#project-structure)
+- [Setup Instructions](#setup-instructions)
+- [Usage](#usage)
+- [Frontend Features](#frontend-features)
+- [Development Guide](#development-guide)
+- [License](#license)
 
-## Technologies Used
+## Project Structure
 
-- **Python**: Core logic for podcast generation.
-- **Docker**: For containerized deployment and cross-platform compatibility.
-- **GitHub Actions**: Automates testing, building, and deploying the podcast generator.
-- **YAML**: Configures workflows and application behavior.
-
----
-
-## Prerequisites
-
-To run or contribute to this project, ensure you have:
-
-- **Docker** installed ([Get Docker](https://www.docker.com/)).
-- A **GitHub account** for integrating workflows.
-- **Python 3.8+** installed (optional for local development).
-
----
-
-## Setup and Usage
-
-### 1. Clone the Repository
-```bash
-git clone <repository_url>
-cd podcast-generator
+```
+.
+|-- apps/
+|   |-- client/                # React application
+|   |   |-- node_modules/      # Node.js dependencies
+|   |   |-- podcast-feed/      # Frontend podcast modules
+|   |   |-- public/            # Public assets for React
+|   |   |-- src/               # React source files
+|   |   |-- Dockerfile.frontend # Dockerfile for the frontend
+|   |   |-- package.json       # React dependencies
+|   |-- server/                # Flask API and Python backend logic
+|       |-- src/               # Backend source files
+|       |-- Dockerfile         # Dockerfile for backend
+|       |-- Dockerfile.backend # Alternate backend Dockerfile
+|       |-- entrypoint.sh      # Backend entrypoint script
+|-- podcast-feed/              # Shared podcast logic (if applicable)
+|-- docker-compose.yml         # Docker Compose file
+|-- LICENSE                    # License information
+|-- README.md                  # Project documentation
+|-- requirements.txt           # Python dependencies
 ```
 
-### 2. Build and Run with Docker
-Build the Docker image:
-```bash
-docker build -t podcast-generator .
-```
+## Setup Instructions
 
-Run the container:
-```bash
-docker run -v $(pwd)/output:/app/output podcast-generator
-```
+### Prerequisites
 
-### 3. Configure Workflows with GitHub Actions
-- Edit the `.github/workflows/podcast-generator.yml` file to customize CI/CD pipelines.
-- Push changes to trigger automated testing and deployment.
+Ensure the following tools are installed on your system:
 
----
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## YAML Workflow Example
+### Installation Steps
 
-Here’s a sample GitHub Actions YAML file:
+1. Clone the repository:
 
-```yaml
-name: Podcast Generator CI/CD
+   ```bash
+   git clone https://github.com/yourusername/fullstack-podcast-app.git
+   cd fullstack-podcast-app
+   ```
 
-on:
-  push:
-    branches:
-      - main
+2. Build and start the application using Docker Compose:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+   ```bash
+   docker-compose up --build
+   ```
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+3. Access the application:
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8
+   - **Backend API**: `http://localhost:5000`
+   - **Frontend**: `http://localhost:3000`
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+## Usage
 
-      - name: Run tests
-        run: |
-          pytest
+### Adding Podcasts
 
-      - name: Build Docker image
-        run: |
-          docker build -t podcast-generator .
+- Place XML or JSON podcast files in the appropriate directory in the backend.
+- The Flask API processes and stores the data either automatically or through a specific endpoint.
 
-      - name: Deploy
-        run: |
-          # Add deployment steps here
-```
+### Viewing Podcasts
 
----
+- Open the React frontend at `http://localhost:3000` to browse, search, and interact with the podcasts.
 
-## Example Use Case
+## Frontend Features
 
-1. Add raw audio files and metadata to the `input` directory.
-2. Run the generator to create podcast-ready files in the `output` directory.
-3. Deploy the podcast to your hosting platform using the CI/CD pipeline.
+- **Responsive Design**: View podcasts on any device with a clean, adaptable UI.
+- **Search and Filter**: Quickly find podcasts using metadata such as title and author.
+- **Detailed Views**: Access in-depth information about each podcast.
 
----
+## Development Guide
 
-## What I Learned
+### Backend Development
 
-Completing the **LinkedIn Learning Path: GitHub Professional Certification** enabled me to:
+1. Navigate to the backend directory:
 
-1. Set up and manage **GitHub Actions** for CI/CD.
-2. Use **Docker** to containerize applications for scalable and reliable deployment.
-3. Write and debug **YAML workflows** to automate repetitive tasks.
+   ```bash
+   cd apps/server
+   ```
 
----
+2. Install Python dependencies:
 
-## Future Enhancements
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- **Web Interface**: Add a user-friendly front-end for podcast creation.
-- **Cloud Integration**: Integrate with platforms like AWS or Azure for scalable hosting.
-- **Enhanced Metadata Support**: Include features for dynamic metadata generation.
+3. Run the Flask application:
 
----
+   ```bash
+   flask run
+   ```
+
+### Frontend Development
+
+1. Navigate to the frontend directory:
+
+   ```bash
+   cd apps/client
+   ```
+
+2. Install Node.js dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm start
+   ```
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE).
 
----
-
-## Acknowledgements
-
-This project was inspired by the **LinkedIn Learning Path: GitHub Professional Certification**, which provided a solid foundation in CI/CD workflows and automation with GitHub. Special thanks to the open-source community for tools and resources!
-
----
